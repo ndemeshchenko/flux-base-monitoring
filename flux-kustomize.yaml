@@ -22,7 +22,7 @@ spec:
   interval: 1m
   chart:
     spec:
-      chart: cr/monitoring-cloud
+      chart: custom-resources
       sourceRef:
         kind: GitRepository
         name: monitoring-cloud
