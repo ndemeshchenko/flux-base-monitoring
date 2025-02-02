@@ -16,6 +16,10 @@ spec:
         name: prometheus-community
         namespace: monitoring
       version: 67.9.0
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
   dependsOn: []
   values:
     kubeControllerManager:
