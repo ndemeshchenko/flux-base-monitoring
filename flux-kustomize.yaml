@@ -16,7 +16,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: monitoring-cloud
-  path: ./_setup
+  path: _setup
   prune: true
   force: true
   # postBuild:
