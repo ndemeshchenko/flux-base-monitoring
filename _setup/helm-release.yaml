@@ -1,0 +1,64 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: flux-system
+spec:
+  interval: 30m0s
+  releaseName: kube-prometheus-stack
+  targetNamespace: monitoring
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: monitoring
+      version: 67.9.0
+  dependsOn: []
+  values:
+    kubeControllerManager:
+      enabled: false
+    kubeEtcd:
+      enabled: false
+    kubeScheduler:
+      enabled: false
+    kubeProxy:
+      enabled: false
+    kubeApiServer:
+      enabled: false
+
+    # Grafana configuration
+    grafana:
+      enabled: false
+    prometheus-node-exporter:
+      extraArgs:
+        - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)
+        - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$
+        - --collector.ipvs.backend-labels=local_address,local_port,remote_port,proto
+        - --no-collector.arp
+        - --no-collector.bonding
+        - --no-collector.btrfs
+        - --no-collector.conntrack
+        - --no-collector.cpufreq
+        - --no-collector.edac
+        - --no-collector.entropy
+        - --no-collector.fibrechannel
+        - --no-collector.filefd
+        - --no-collector.hwmon
+        - --no-collector.infiniband
+        - --no-collector.nfs
+        - --no-collector.nfsd
+        - --no-collector.powersupplyclass
+        - --no-collector.rapl
+        - --no-collector.schedstat
+        - --no-collector.sockstat
+        - --no-collector.softnet
+        - --no-collector.textfile
+        - --no-collector.thermal_zone
+        - --no-collector.timex
+        - --no-collector.udp_queues
+        - --no-collector.xfs
+        - --no-collector.zfs
+        - --no-collector.mdadm
