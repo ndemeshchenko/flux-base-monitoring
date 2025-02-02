@@ -20,6 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m
+  targetNamespace: monitoring
   chart:
     spec:
       chart: custom-resources
