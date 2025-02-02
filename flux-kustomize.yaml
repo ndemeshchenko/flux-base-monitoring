@@ -20,8 +20,6 @@ metadata:
   namespace: flux-system
 spec:
   chart:
-    interval: 1m
-    timeout: 1m
     spec:
       chart: cr/monitoring-cloud
       sourceRef:
