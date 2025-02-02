@@ -1,9 +1,9 @@
 # if clusterPurpose is esm, then create a prometheus rule for flux components
-{{- if eq .Values.clusterPurpose "esm" }}
+{{- if .Values.clusterPurpose }}
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: kube-prometheus-stack-fluxops.rules
+  name: kube-prometheus-stack-fluxops{{- if eq .Values.clusterPurpose "esm" }}-esm{{- else if eq .Values.clusterPurpose "oneaz" }}-oneaz{{- end }}.rules
 spec:
   groups:
   - name: fluxops.rules
