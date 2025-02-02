@@ -19,8 +19,8 @@ metadata:
   name: flux-base-monitoring-cr
   namespace: flux-system
 spec:
+  interval: 1m
   chart:
-    interval: 1m
     spec:
       chart: cr/monitoring-cloud
       sourceRef:
