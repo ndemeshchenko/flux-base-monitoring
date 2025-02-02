@@ -32,4 +32,5 @@ spec:
         kind: GitRepository
         name: monitoring-cloud
   values:
+    # this will be populated by fluxops repo's postBuild
     clusterPurpose: ${clusterPurpose}
