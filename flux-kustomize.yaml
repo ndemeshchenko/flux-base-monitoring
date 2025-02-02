@@ -31,5 +31,5 @@ spec:
       sourceRef:
         kind: GitRepository
         name: monitoring-cloud
-  values:
-    clusterPurpose: ${clusterPurpose}
+  # values:
+  #   clusterPurpose: ${clusterPurpose}
