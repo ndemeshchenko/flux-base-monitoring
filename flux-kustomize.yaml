@@ -12,6 +12,10 @@ spec:
   path: ./_setup
   prune: true
   force: true
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: platforminfo-custom
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -27,3 +31,5 @@ spec:
       sourceRef:
         kind: GitRepository
         name: monitoring-cloud
+  values:
+    clusterPurpose: ${clusterPurpose}
