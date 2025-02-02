@@ -13,7 +13,7 @@ spec:
   prune: true
   force: true
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: flux-base-monitoring-cr
