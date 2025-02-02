@@ -12,3 +12,18 @@ spec:
   path: ./_setup
   prune: true
   force: true
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: flux-base-monitoring-cr
+  namespace: flux-system
+spec:
+  chart:
+    interval: 1m
+    timeout: 1m
+    spec:
+      chart: cr/monitoring-cloud
+      sourceRef:
+        kind: GitRepository
+        name: monitoring-cloud
