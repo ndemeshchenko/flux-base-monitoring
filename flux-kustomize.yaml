@@ -1,16 +1,9 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: monitoring-cloud-setup
   namespace: flux-system
 spec:
-  # decryption:
-  #   provider: sops
-  #   secretRef:
-  #     name: sops-gpg
-  # dependsOn:
-  #   - name: external-secrets-setup
   interval: 1m
   timeout: 1m
   sourceRef:
@@ -19,50 +12,3 @@ spec:
   path: _setup
   prune: true
   force: true
-  # postBuild:
-  #   substituteFrom:
-  #     - kind: ConfigMap
-  #       name: platforminfo
-  #     - kind: ConfigMap
-  #       name: platforminfo-custom
-  #     - kind: Secret
-  #       name: platforminfo-dynamic
----
-# apiVersion: source.toolkit.fluxcd.io/v1
-# kind: HelmRepository
-# metadata:
-#   name: monitoring-cloud-base-repo
-#   namespace: flux-system
-# spec:
-#   interval: 1m
-#   provider: generic
-#   timeout: 60s
-#   url: https://prometheus-community.github.io/helm-charts
-
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: monitoring-cloud-custom-resources
-#   namespace: flux-system
-# spec:
-#   decryption:
-#     provider: sops
-#     secretRef:
-#       name: sops-gpg
-#   dependsOn:
-#     - name: monitoring-cloud-setup
-#   interval: 15m
-#   timeout: 1m
-#   sourceRef:
-#     kind: GitRepository
-#     name: monitoring-cloud
-#   path: ./custom-resources
-#   prune: true
-#   postBuild:
-#     substituteFrom:
-#       - kind: ConfigMap
-#         name: platforminfo
-#       - kind: ConfigMap
-#         name: platforminfo-custom
-#       - kind: Secret
-#         name: platforminfo-dynamic
